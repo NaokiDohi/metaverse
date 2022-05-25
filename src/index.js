@@ -1,3 +1,4 @@
+import Movements from "./movements.js";
 
 // Declation of a new scene with Three.js
 const scene = new THREE.Scene();
@@ -54,6 +55,26 @@ function animate() {
     cylinder.rotation.x += 0.05;
 
 	requestAnimationFrame( animate );
+    // Movement to the left
+    if (Movements.isPressed(37)) {
+        camera.position.x -= 0.5;
+    }
+    // Upward movement
+    if (Movements.isPressed(38)) {
+        camera.position.x += 0.5;
+        camera.position.y += 0.5;
+    }
+    // Movement to the right
+    if (Movements.isPressed(39)) {
+        camera.position.x += 0.5;
+    }
+    // Downward movement
+    if (Movements.isPressed(40)) {
+        camera.position.x -= 0.5;
+        camera.position.y -= 0.5;
+    }
+
+    camera.lookAt(space.position);
 	renderer.render( scene, camera );
 }
 animate();
